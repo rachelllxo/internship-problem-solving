@@ -3,10 +3,10 @@ using namespace std;
 
 int main() {
     int arr[100][100], matrix_size;
-
+     //getting inputs 
     cout << "Enter the size of the matrix: ";
     cin >> matrix_size;
-	int matrix_elements[100][100]; // You were trying to subscript an int by mistake
+	int matrix_elements[100][100]; 
 
     cout << "Enter the elements in the matrix:\n";
     for (int rows = 0; rows < matrix_size; rows++) {
@@ -15,7 +15,7 @@ int main() {
         }
     }
 
-    // Transpose the matrix
+    // Transposing the matrix
     for (int rows = 0; rows < matrix_size; rows++) {
         for (int columns = rows + 1; columns < matrix_size; columns++) {
             int transpose_matrix = matrix_elements[rows][columns];
@@ -24,7 +24,7 @@ int main() {
         }
     }
 
-    // Reverse each row
+    // Reversing each row
     for (int rows = 0; rows < matrix_size; rows++) {
         for (int columns = 0; columns < matrix_size / 2; columns++) {
             int rotated_matrix = matrix_elements[rows][columns];
@@ -33,7 +33,7 @@ int main() {
         }
     }
 
-    // Print the rotated matrix
+    // Printing the rotated matrix
     cout << "The rotated matrix:\n";
     for (int rows = 0; rows < matrix_size; rows++) {
         for (int columns = 0; columns < matrix_size; columns++) {
