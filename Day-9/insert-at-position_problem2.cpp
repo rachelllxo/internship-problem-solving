@@ -1,16 +1,22 @@
 #include<iostream>
 using namespace std;
+
 struct node {
     int data;
     node* next;
 };
+
 node* head = NULL;
 
-// Function to create a list with N empty nodes (all data = 0)
-void create_empty_list(int no_of_nodes) {
-    for (int counter = 0; counter < no_of_nodes; counter++) {
-        node* new_node = new node;
-        new_node->data = 0;         
+// Creating a linked list with user input
+void create_list(int numberOfNodes) {
+    head = NULL;
+    for (int i = 0; i < numberOfNodes; i++) {
+        int value;
+        cin >> value;
+
+        node* new_node = new node();
+        new_node->data = value;
         new_node->next = NULL;
 
         if (head == NULL) {
@@ -25,24 +31,37 @@ void create_empty_list(int no_of_nodes) {
     }
 }
 
-// Function to insert value at a particular position
+// Insert new node at given position (0-based index)
 void insert_at_position(int position, int value) {
-    if (position < 1) return;
+    node* new_node = new node();
+    new_node->data = value;
+    new_node->next = NULL;
+
+    // If inserting at the head
+    if (position == 0) {
+        new_node->next = head;
+        head = new_node;
+        return;
+    }
 
     node* temp = head;
-    int count = 1;
+    int index = 0;
 
-    while (temp != NULL && count < position) {
+    while (temp != NULL && index < position - 1) {
         temp = temp->next;
-        count++;
+        index++;
     }
 
-    if (temp != NULL) {
-        temp->data = value;
+    if (temp == NULL) {
+        cout << "Position out of range!" << endl;
+        return;
     }
+
+    new_node->next = temp->next;
+    temp->next = new_node;
 }
 
-// Function to print the linked list (no labels)
+// Display the linked list
 void display() {
     node* temp = head;
     while (temp != NULL) {
@@ -53,15 +72,24 @@ void display() {
 }
 
 int main() {
-    int numberOfNodes, position, value;
-	cout<<"Enter the number of nodes to create: ";
-    cin >> numberOfNodes;               // number of nodes
-    create_empty_list(numberOfNodes);
-	cout<<"Enter the position: ";
+    int numberOfNodes;
+    cout << "Enter the number of initial elements: ";
+    cin >> numberOfNodes;
+
+    cout << "Enter the elements: ";
+    create_list(numberOfNodes);
+
+    int position, value;
+    cout << "Enter the position to insert at: ";
     cin >> position;
-	cout<<"Enter the value to be inserted: ";
-	cin>> value;      // position and value to insert
+
+    cout << "Enter the value to insert: ";
+    cin >> value;
+
     insert_at_position(position, value);
-    display();              // final output
+
+    cout << "Final linked list: ";
+    display();
+
     return 0;
 }
