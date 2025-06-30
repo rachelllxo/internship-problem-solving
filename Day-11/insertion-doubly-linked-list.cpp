@@ -26,6 +26,17 @@ int insert_linkedList(int value) {
 	}
 	return 0;
 }
+
+int display_linkedList() {
+    node* temp = head;
+    while (temp != NULL) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+    return 0;
+}
+
 int main() {
     int noOfnodes, val;
     cout << "Enter the number of nodes: ";
@@ -35,6 +46,9 @@ int main() {
         cin >> val;
         insert_linkedList(val);
     }
+
+    cout << "The linked list is: ";
+    display_linkedList();
 
     return 0;
 }
