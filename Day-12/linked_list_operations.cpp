@@ -12,13 +12,13 @@ Node* head = NULL;
 
 // Insert node at the end
 int insert_node(int value) {
-    Node* new_node = new Node();
+    Node* new_node = new Node(); //creating a new node to insert
     new_node->data = value;
     new_node->next = NULL;
 
-    if (head == NULL) {
+    if (head == NULL) {			//if it's the first node
         head = new_node;
-    } else {
+    } else {					//if it's another node 
         Node* temp = head;
         while (temp->next != NULL) {
             temp = temp->next;
@@ -32,7 +32,7 @@ int insert_node(int value) {
 int insert_at_beginning(int value) {
     Node* new_node = new Node();
     new_node->data = value;
-    new_node->next = head;
+    new_node->next = head; 		//points where the head previously pointed (to the new node)
     head = new_node;
     return 0;
 }
@@ -43,13 +43,13 @@ int insert_at_position(int position, int value) {
     new_node->data = value;
 
     // Insert at beginning (position 1)
-    if (position == 1) {
+    if (position == 1) {				
         new_node->next = head;
-        head = new_node;
+        head = new_node; //points to the first node
         return 0;
     }
 
-    Node* temp = head;
+    Node* temp = head; 		//current position is 1 when temp points to head 
     int current_pos = 1;
 
     // Move to (position - 1)th node
@@ -110,7 +110,7 @@ int reverse_list() {
 
     while (curr != NULL) {
         next = curr->next;
-        curr->next = prev;
+        curr->next = prev;		//points to the previous node 
         prev = curr;
         curr = next;
     }
@@ -129,7 +129,7 @@ int display_list() {
     return 0;
 }
 
-// Menu-driven interface without using break
+// Menu-driven interface 
 int menu() {
     int choice = 0;
 
